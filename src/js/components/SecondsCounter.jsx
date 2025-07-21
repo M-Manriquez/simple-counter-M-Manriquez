@@ -23,14 +23,7 @@ const SecondsCounter = (props) => {
     }
     return () => clearInterval(interval);
   });
-  /*
-    if (isPlaying)
-      interval = setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds  1);
-      }, 1000);
-    return () => clearInterval(interval);
-  }, [isPlaying]); // <-- tiene como dependencia isActive para que el useEffect solo se ejecute cuando isActive cambia
-    */
+
   // Creo una variable que almacenara los segundos como strings en un formato especifico (6 digitos y digitos vacios rellenados con 0)
   // Utilizo map para que se rendericen los 6 digitos a la vez
   const formattedSeconds = seconds.toString().padStart(6, "0").split("");
@@ -72,5 +65,5 @@ const SecondsCounter = (props) => {
     </div>
   );
 };
-
+//TODO: ARREGLAR NEGATIVOS EN AL CUENTA ATRAS
 export default SecondsCounter;
