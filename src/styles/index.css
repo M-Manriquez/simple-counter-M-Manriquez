@@ -9,3 +9,14 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+.seconds {
+  font-size: 100px;
+}
+.clock {
+  font-size: 75px;
+}
+
+.digit-bg-color {
+  background-color: rgb(53, 60, 58);
+}
