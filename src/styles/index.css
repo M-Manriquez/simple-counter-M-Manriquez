@@ -20,3 +20,6 @@
 .digit-bg-color {
   background-color: rgb(53, 60, 58);
 }
+button {
+  width: 100px;
+}

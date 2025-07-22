@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from "react";
 
 const SecondsCounter = (props) => {
-  // Hook que se encarga de almacenar y cambiar los segundos (parte en 0)
+  // Hook que se encarga de almacenar y cambiar los segundos (si el usuario especifica un número, entonces parte de ahi, si no se especifica entonces parte en 0)
   const [seconds, setSeconds] = useState(props.seconds ? props.seconds : 0);
+
+  // Hook que controla si el contador esta en ejecucion o pausado
   const [isPlaying, setPlaying] = useState(false);
+
+  // Hook que controla si el contador debe incrementar o decrementar
   const [isToggled, setToggled] = useState(false);
 
-  // Hook que se encarga de aumentar el valor de seconds en 1 cada 1000 ms (1 segundo)
+  // Hook que se encarga de aumentar o decrementar el valor de seconds en 1 cada 1000 ms (1 segundo) dependiendo el estado
   useEffect(() => {
     // Creo un intervalo como nulo
     let interval = null;
 
-    // Si isActive es verdadero, entonces el intervalo pasa a cambiar los segundos aumentando de 1 en 1 cada 1 segundo.
-    if (isPlaying && isToggled) {
+    // Si isPlaying e isToggled son verdaderos, entonces el intervalo pasa a cambiar los segundos aumentando de 1 en 1 cada 1 segundo
+    if (isPlaying && !isToggled) {
       interval = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds + 1);
       }, 1000);
-    } else if (isPlaying && !isToggled) {
-      interval = setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds - 1);
-      }, 1000);
     }
+    // En cambio, si isPlaying es verdadero pero isToggled es falso, en lugar de aumentar en 1 segundo, el valor disminuira en 1 cada segundo
+    else if (isPlaying && isToggled) {
+      if (seconds > 0) {
+        interval = setInterval(() => {
+          setSeconds((prevSeconds) => prevSeconds - 1);
+        }, 1000);
+      } else {
+        return () => clearInterval(interval);
+      }
+    }
+    // En el caso de que ambos sean falsos, el intervalo se limpia
     return () => clearInterval(interval);
   });
 
@@ -39,7 +50,7 @@ const SecondsCounter = (props) => {
       </div>
       <div>
         <button
-          className="btn btn-success"
+          className="btn btn-bg-black text-white"
           onClick={() => setToggled(!isToggled)}
         >
           {isToggled ? (
@@ -49,7 +60,7 @@ const SecondsCounter = (props) => {
           )}
         </button>
         <button
-          className="btn btn-primary"
+          className="btn btn-bg-black text-white"
           onClick={() => setPlaying(!isPlaying)}
         >
           {isPlaying ? (
@@ -58,7 +69,10 @@ const SecondsCounter = (props) => {
             <i class="fa-solid fa-play"></i>
           )}
         </button>
-        <button className="btn btn-primary" onClick={() => setSeconds(0)}>
+        <button
+          className="btn btn-bg-black text-white"
+          onClick={() => setSeconds(0)}
+        >
           <i class="fa-solid fa-rotate-left"></i>
         </button>
       </div>
