@@ -54,9 +54,15 @@ const SecondsCounter = (props) => {
           onClick={() => setToggled(!isToggled)}
         >
           {isToggled ? (
-            <i class="fa-solid fa-toggle-on"></i>
+            <div>
+              <i class="fa-solid fa-toggle-on"></i>
+              <p>countdown</p>
+            </div>
           ) : (
-            <i class="fa-solid fa-toggle-off"></i>
+            <div>
+              <i class="fa-solid fa-toggle-off"></i>
+              <p>chrono</p>
+            </div>
           )}
         </button>
         <button
@@ -64,9 +70,15 @@ const SecondsCounter = (props) => {
           onClick={() => setPlaying(!isPlaying)}
         >
           {isPlaying ? (
-            <i class="fa-solid fa-pause"></i>
+            <div>
+              <i class="fa-solid fa-pause"></i>
+              <p>pause</p>
+            </div>
           ) : (
-            <i class="fa-solid fa-play"></i>
+            <div>
+              <i class="fa-solid fa-play"></i>
+              <p>resume</p>
+            </div>
           )}
         </button>
         <button
@@ -74,6 +86,7 @@ const SecondsCounter = (props) => {
           onClick={() => setSeconds(0)}
         >
           <i class="fa-solid fa-rotate-left"></i>
+          <p>restart</p>
         </button>
       </div>
     </div>
