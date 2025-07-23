@@ -92,5 +92,5 @@ const SecondsCounter = (props) => {
     </div>
   );
 };
-//TODO: ARREGLAR NEGATIVOS EN AL CUENTA ATRAS
+
 export default SecondsCounter;
